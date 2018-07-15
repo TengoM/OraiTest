@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+ext {
+    DAGGER_VERSION = "2.9"
+    SUPPORT_VERSION = "27.1.1"
+    RETROFIT_VERSION = "2.3.0"
+    OK_HTTP_VERSION = "3.2.0"
+    SQUREAUP_OKIO_VERSION = "1.7.0"
+}
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.orai.oraitest"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    //support
+    implementation "com.android.support:appcompat-v7:$SUPPORT_VERSION"
+    implementation "com.android.support:design:$SUPPORT_VERSION"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    //dagger
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+
+    //OkHttp
+    api "com.squareup.okhttp3:okhttp:$OK_HTTP_VERSION"
+    api "com.squareup.okio:okio:$SQUREAUP_OKIO_VERSION"
+    api 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
